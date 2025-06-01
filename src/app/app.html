@@ -55,6 +55,10 @@
   .content input, 
   .content button{
     width: 200px;
+    margin: auto;
+    height: 24px;
+    padding-left: 4px;
+    padding-right: 4px;
   }
 
   .content #fname, 
@@ -71,6 +75,8 @@
     background-color: #115f42;
     font-size: 16px;
     margin: auto;
+    padding-left: 4px;
+    padding-right: 4px;
   }
 
   .content button:hover{
@@ -102,6 +108,13 @@
     border: 2px solid #115f42;
   }
 
+  .swal2-shown .swal2-confirm{
+    color: #000;
+    border: 2px solid #ffc20e;
+    background-color: #ffc20e;
+    margin: auto;
+  }
+
 
 
 </style>
@@ -113,14 +126,16 @@
 
     <div class="form">
       <!-- <label for="name">First Name:</label> -->
-      <input id="fname" type="text" placeholder="First Name" [(ngModel)]="fname" />
+      <input id="fullname" type="text" placeholder="Full Name" [(ngModel)]="fullname" />
        <!-- <label for="name">Last Name:</label> -->
-      <input id="lname" type="text" placeholder="Last Name" [(ngModel)]="lname" />
+      <!-- <input id="lname" type="text" placeholder="Last Name" [(ngModel)]="lname" /> -->
       <!-- <button type="button" (click)="clearForm()">Reset</button> -->
+      <span *ngIf="fullname"><h1>Hello, {{ fullname }}</h1></span>
     </div>
 
     <div class="send-form">
-      <span *ngIf="fname"><h1>Hello, {{ fname }} {{ lname }}!</h1></span>
+      <!-- <span *ngIf="fullname"><h1>Hello, {{ fullname }} {{ lname }}!</h1></span> -->
+       <!-- <span *ngIf="fullname"><h1>Hello, {{ fullname }}</h1></span> -->
       <button type="button" (click)="sendForm()">Send</button>
     </div>
     <button type="button" (click)="clearForm()">Clear Form</button>

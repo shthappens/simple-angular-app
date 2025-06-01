@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SendService  } from './send.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -9,36 +10,42 @@ import { SendService  } from './send.service';
 })
 export class App {
   protected title = 'simple-angular-app';
-  fname = '';
-  lname = '';
+  fullname = '';
 
   constructor(private sendService: SendService) {}
 
   clearForm() {
-    this.fname = '';
-    this.lname = '';
+    this.fullname = '';
   }
 
   sendForm() {
-    const fullName = `${this.fname} ${this.lname}`.trim();
-    // const message = `Hello from ${fullName}!`;
-    const message = `${this.fname} ${this.lname}`.trim();
+    const message = `${this.fullname}`.trim();
 
     if (!message) {
-      alert('Please enter your full name before sending.');
-      return;
-    }
+      Swal.fire({
+        icon: 'warning',
+        title: 'Missing Information',
+        text: 'Please enter your full name before sending.',
+      });
+        return;
+      }
     
-    this.sendService.postMessage(message)
-    .subscribe({
+    this.sendService.postMessage(message).subscribe({
       next: (response: any) => {
-        console.log('Success:', response);
-        alert('Message sent successfully!\n' + JSON.stringify(response, null, 2));
-        // alert('Message sent successfully!');
+        Swal.fire({
+          title: 'Message sent!',
+          html: `<pre>${JSON.stringify(response, null, 2)}</pre>`,
+          icon: 'success',
+          confirmButtonText: 'Close'
+        });
       },
       error: (error: any) => {
-        console.log('Error:', error);
-        alert('Something went wrong.');
+        Swal.fire({
+          title: 'Error!',
+          text: 'Something went wrong.',
+          icon: 'error',
+          confirmButtonText: 'Close'
+        });
       }
     });
   }
