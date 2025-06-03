@@ -24,8 +24,10 @@ export class App {
     if (!message) {
       Swal.fire({
         icon: 'warning',
-        title: 'Missing Information',
-        text: 'Please enter your full name before sending.',
+        title: '<span style="font-family:Arial">Missing Information</span>',
+        html: '<div style="font-family: Arial;">Please enter your full name before sending.</div>',
+        confirmButtonText: 'Close',
+        confirmButtonColor: '#115f42'
       });
         return;
       }
@@ -33,18 +35,19 @@ export class App {
     this.sendService.postMessage(message).subscribe({
       next: (response: any) => {
         Swal.fire({
-          title: 'Message sent!',
-          html: `<pre>${JSON.stringify(response, null, 2)}</pre>`,
+          title: '<span style="font-family:Arial">Message sent!</span>',
+          html: `<pre style="font-family:Arial">${JSON.stringify(response, null, 2)}</pre>`,
           icon: 'success',
-          confirmButtonText: 'Close'
+          confirmButtonText: 'Close',
+          confirmButtonColor: '#115f42'
         });
       },
       error: (error: any) => {
         Swal.fire({
-          title: 'Error!',
-          text: 'Something went wrong.',
+          html: '<div style="font-family: Arial;">Something went wrong.</div>',
           icon: 'error',
-          confirmButtonText: 'Close'
+          confirmButtonText: 'Close',
+          confirmButtonColor: '#115f42'
         });
       }
     });
