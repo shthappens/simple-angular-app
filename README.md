@@ -2,6 +2,12 @@
 
 This project is a simple Angular app that sends a form input to a POST API and displays the response in a SweetAlert2 modal.
 
+## Prerequisites
+
+- [Node.js](https://nodejs.org/)
+- npm (comes with Node.js)
+- [Angular CLI](https://angular.io/cli)
+
 ## How to Run
 
 1. Clone the repo  
@@ -30,3 +36,4 @@ This project is a simple Angular app that sends a form input to a POST API and d
 
 - CORS is allowed for https://*, http://localhost:4200, http://loclahost:8100
 - Uses Angular `HttpClient` for API calls
+- Uses SweetAlert2 for message display
